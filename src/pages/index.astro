@@ -33,20 +33,25 @@ const title = t("meta:title");
         <section aria-labelledby={conceptSectionId}>
           <div class="h-12"></div>
 
-          <div class="flex flex-row gap-4 items-center">
-            <Title id={conceptSectionId} size="5xl" as="h2">
-              Les derniers concepts
-            </Title>
+          <div
+            class="flex flex-row gap-2 md:gap-4 md:items-center justify-between"
+          >
+            <div>
+              <Title id={conceptSectionId} size="5xl" as="h2">
+                Les derniers concepts
+              </Title>
+              <div class="h-2"></div>
+              <TitleLine size="M" />
+            </div>
 
-            <a
-              href="/concepts"
-              class="px-3 py-1 inline-flex items-center gap-2 bg-slate-50 text-sm rounded-full hover:bg-slate-100 active:bg-slate-200"
-              >Voir tous</a
-            >
+            <div class="shrink-0">
+              <a
+                href="/concepts"
+                class="px-3 py-1 inline-flex items-center gap-2 bg-slate-50 text-sm rounded-full hover:bg-slate-100 active:bg-slate-200"
+                >Voir tous</a
+              >
+            </div>
           </div>
-
-          <div class="h-2"></div>
-          <TitleLine size="M" />
 
           <div class="h-8"></div>
 

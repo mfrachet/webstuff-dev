@@ -9,7 +9,7 @@ export default function Search() {
       method="get"
       className="flex flex-row relative items-end"
     >
-      <div>
+      <div className="w-full md:w-auto">
         <label htmlFor="searchbar" className="font-semibold block pb-1">
           {t("concepts:search")}
         </label>
@@ -19,7 +19,7 @@ export default function Search() {
           type="text"
           name="search"
           placeholder="e.g: Server Side Rendering"
-          className="bg-white px-4 py-2 border-gray-700 rounded-lg drop-shadow-lg pr-12"
+          className="w-full md:w-auto bg-white px-4 py-2 border-gray-700 rounded-lg drop-shadow pr-12"
         />
       </div>
 
