@@ -1,4 +1,4 @@
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { TbLoader2 } from "react-icons/tb";
 import { HiOutlineServerStack } from "react-icons/hi2";
 
 export interface NodejsServerProps {
@@ -16,7 +16,7 @@ export default function NodejsServer({ isGenerating }: NodejsServerProps) {
       <div className="flex flex-col items-center absolute bottom-6">
         {isGenerating && (
           <>
-            <AiOutlineLoading3Quarters className="animate-spin text-2xl" />
+            <TbLoader2 className="animate-spin text-2xl" />
             <div className="text-xs">Generation du HTML</div>
           </>
         )}
