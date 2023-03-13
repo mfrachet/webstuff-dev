@@ -7,6 +7,7 @@ const FirstFrame = () => {
   return (
     <Canvas>
       <Browser />
+      <div className="h-[60px] w-[60px]" />
       <NodeServer />
     </Canvas>
   );
@@ -26,6 +27,7 @@ const ThirdFrame = () => {
   return (
     <Canvas>
       <Browser isFullPageLoading />
+      <div className="h-[60px] w-[60px]" />
       <NodeServer isGenerating />
     </Canvas>
   );
@@ -45,6 +47,7 @@ const FifthFrame = () => {
   return (
     <Canvas>
       <Browser initiallyPainted />
+      <div className="h-[60px] w-[60px]" />
       <NodeServer />
     </Canvas>
   );

@@ -31,7 +31,7 @@ export default function Timeline({ steps, title }: TimelineProps) {
           .map((s, index) => (
             <Card key={`timeline-${index}`}>
               <div className="p-6">{s.node}</div>
-              <div className="bg-slate-100 px-6 py-3 flex flex-row gap-2">
+              <div className="bg-slate-100 px-6 py-3 flex flex-col md:flex-row md:gap-4">
                 <div>
                   <Tag>{`${step}/${steps.length}`}</Tag>
                 </div>
