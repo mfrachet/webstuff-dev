@@ -1,5 +1,5 @@
 import React from "react";
-import { TbSlash } from "react-icons/tb";
+import { IconSlash } from "./icons/IconSlash";
 
 export interface Crumb {
   label: string;
@@ -35,7 +35,7 @@ export default function BreadCrumbs({ crumbs }: BreadCrumbsProps) {
 
               {!isLast && (
                 <li role="separator">
-                  <TbSlash className="text-lg text-slate-500" />
+                  <IconSlash className="text-lg text-slate-500" />
                 </li>
               )}
             </React.Fragment>

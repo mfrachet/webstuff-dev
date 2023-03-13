@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { TbSearch } from "react-icons/tb";
+import { IconSearch } from "./icons/IconSearch";
 
 export default function Search() {
   return (
@@ -28,7 +28,7 @@ export default function Search() {
         className="h-8 w-8 bg-white text-slate-900 rounded hover:bg-slate-50 active:bg-slate-100 relative z-10 -ml-9 mb-1 flex items-center justify-center"
         aria-label={t("conceps:search")}
       >
-        <TbSearch />
+        <IconSearch />
       </button>
     </form>
   );

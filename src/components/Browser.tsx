@@ -1,4 +1,4 @@
-import { TbLoader2 } from "react-icons/tb";
+import { IconLoader } from "./icons/IconLoader";
 
 export interface BrowserProps {
   loadedText?: string;
@@ -32,7 +32,7 @@ export default function Browser({
         <span className="w-3 h-3 rounded-full bg-green-400"></span>
         <span className="ml-4 bg-gray-700 drop-shadow-4xl rounded h-6 w-28 items-center flex px-2">
           {isFullPageLoading && (
-            <TbLoader2
+            <IconLoader
               className="animate-spin text-lg text-slate-100"
               aria-label="La page charge..."
             />
