@@ -1,0 +1,16 @@
+---
+export interface Props {
+  size: "S" | "M";
+}
+
+const SizeClass = {
+  S: "w-4",
+  M: "w-24",
+};
+
+const { size } = Astro.props;
+
+const sizeClass = SizeClass[size];
+---
+
+<div aria-hidden class={`h-1 bg-slate-700 rounded-full ${sizeClass}`}></div>

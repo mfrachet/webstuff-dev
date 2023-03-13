@@ -1,0 +1,50 @@
+---
+import { getEntryBySlug } from "astro:content";
+import { t } from "i18next";
+import BreadCrumbs from "../../components/BreadCrumbs";
+import Container from "../../components/Container.astro";
+import Hero from "../../components/Hero.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/404");
+}
+
+const entry = await getEntryBySlug("concepts", slug || "");
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await entry.render();
+const mainId = "home-root";
+---
+
+<Layout title={entry.data.title}>
+  <main aria-labelledby={mainId}>
+    <div class="hero-background">
+      <Container>
+        <BreadCrumbs
+          crumbs={[
+            { label: t("meta:home"), href: "/" },
+            { label: t("meta:concepts"), href: "/concepts" },
+            { label: entry.data.title, href: `/concepts/${entry.slug}` },
+          ]}
+        />
+        <Hero id={mainId} title={entry.data.title} />
+      </Container>
+    </div>
+
+    <Container>
+      <div class="h-12"></div>
+      <div
+        class="prose prose-headings:text-slate-900 prose-headings:font-extrabold prose-strong:text-slate-900 prose-ul:list-disc prose-a:underline prose-a:text-gray-900 prose-blockquote:bg-slate-50 prose-blockquote:rounded prose-blockquote:border-l-4 prose-blockquote:border-l-slate-500 prose-blockquote:px-6 prose-blockquote:py-1 prose-code:rounded prose-code:px-1 prose-hr:border-slate-200"
+      >
+        <Content />
+      </div>
+      <div class="h-12"></div>
+    </Container>
+  </main>
+</Layout>

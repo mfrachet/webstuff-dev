@@ -1,0 +1,91 @@
+---
+title: Hydration
+img: /assets/drop.jpg
+excerpt: "C'est un moyen de charger une page rapidement"
+date: 2023-03-10
+---
+
+import { AppStartTimeline } from "../../modules/concepts/ssr/AppStartTimeline";
+
+> Pour comprendre ce qu'est l'hydratation, il est preferable d'avoir au prealable compris le [Server Side Rendering](/concepts/ssr)
+
+Reprenons la timeline du concept Server Side Rendering.
+
+<AppStartTimeline client:only />
+
+Sur cette timeline, l'avant derniere frame indiquant le demarrage de l'app est celle qui nous interesse.
+
+Rappelons nous qu'avant cette frame, le serveur a genere du HTML qui a ete affiche par le navigateur. Cependant, la page n'est pas interactive : si vous cliquiez sur un bouton pour afficher une modale, rien ne se passerait.
+
+Pour la rendre interactive, quelque chose doit se passer au sein du navigateur.
+
+---
+
+Pour comprendre le processus dans sa globalite, repartons du serveur. Dans les frameworks actuels, le serveur utilise pour generer le HTML est **un serveur Node.js**.
+
+_Pourquoi un serveur Node.js specifiquement ?_
+
+Parce qu'un serveur Node.js peut executer du code JavaScript, tout comme un navigateur. Et c'est un tres tres gros avantages : les frameworks peuvent cacher de la complexite et des optimisations en executant du code qui a ete ecris dans le meme language, mais execute sur deux plateformes differentes (navigateur et serveur).
+
+Et pour ne citer que lui, React va exploiter cette force pour "rendre" une application de maniere optimale dependant de la platforme sur laquelle il execute.
+
+## Le rendu d'une app React (entre autres)
+
+### Rendu initial cote serveur
+
+Sur le serveur Node.js, React va rendre l'application a l'aide de la fonction `renderToString` (ou [fonctions "similaires"](https://beta.reactjs.org/reference/react-dom/server)) qui aura pour but de generer du HTML que le navigateur sera en mesure d'interpreter.
+
+**Ces fonctions ne rendent pas la page web interactive, elles permettent uniquement de creer du HTML, et ainsi participent a optimiser le temps de chargement de la premiere page seulement (le navigateur n'a plus qu'a afficher la page quand elle recoit ce HTML).**
+
+### Rendu dans le navigateur
+
+Une fois la page affichee (mais non-interactive) dans le navigateur, React va rendre (ou plutot "hydrater" dans ce cas precis) l'application a l'aide de la fonction [`hydrateRoot`](https://beta.reactjs.org/reference/react-dom/client/hydrateRoot).
+
+Durant ce processus d'hydratation, React va comparer le HTML qu'il avait au prealable genere sur le serveur avec ce qu'il est en train de generer dans le navigateur pour s'assurer que le contenu (et l'arbre des composants) sont les memes. On appelle cette etape la **reconciliation**. Il va, au passage, attacher les evenements tels que `click`, `focus`, `keyup` etc.. sur les elements du DOM concernes.
+
+Une fois cette etape terminee, l'application est "responsive" et la page web est interactive.
+
+### En cas d'erreur
+
+Lorsque le contenu de la page HTML recu par le serveur est different de ce que React est en train d'essayer de creer dans le navigateur, une erreur peut etre levee indiquant un `mismatch` entre les plateformes.
+
+Bien que cette erreur puisse etre un chouille effrayante, elles sont souvent assez simple (pas toujours mais souvent) a gerer.
+
+Par exemple, si on utilise la fonction `Math.random` dans un composant, il se peut que la valeur retournee soit `0.42` dans le serveur, mais elle sera tres sans doute differente dans le navigateur, par exemple `0.78`:
+
+```jsx
+const MyComponent = () => {
+  return <p>{Math.random()}</p>;
+};
+```
+
+Dans ce cas precis, quelle valeur est la bonne ? Celle du serveur ou celle du client ?
+
+React n'est pas en mesure de le determiner et ce sera donc a la charge du developpeur de s'ajuster. Si votre source de verite, c'est le serveur, il est preferable de deplacement l'appelle a `Math.random` dans les fonctions serveurs :
+
+```jsx
+// Exemple en utilisant Nextjs
+export const getServerSideProps = () => {
+  return {
+    props: {
+      random: Math.random(),
+    },
+  };
+};
+```
+
+Si vous avez besoin de cette fonction pour un application exclusivement cote client, dans le navigatauer, vous pouvez utiliser les hooks de React :
+
+```jsx
+const MyComponent = () => {
+  const [random, setRandom] = useState(0);
+
+  // Ce code sera execute uniquement dans le navigateur, apres le demarrage de React
+  // il n'y aura donc pas d'erreur d'hydratation a ce moment la
+  useEffect(() => {
+    setRandom(Math.random());
+  }, []);
+
+  return <p>{random}</p>;
+};
+```

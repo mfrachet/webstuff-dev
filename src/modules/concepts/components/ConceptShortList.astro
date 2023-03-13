@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import ConceptInfo from "./ConceptInfo";
+const allConcepts = await getCollection("concepts");
+allConcepts.sort((a, b) => (a.data.date < b.data.date ? 1 : -1));
+
+const formatter = new Intl.DateTimeFormat("fr-FR", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+});
+
+const latestConcepts = allConcepts
+  .slice(0, 6)
+  .map((s) => ({ ...s, date: formatter.format(s.data.date) }));
+---
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+  {
+    latestConcepts.map((concept, index) => (
+      <ConceptInfo
+        id={`conceptlist-${index}`}
+        title={concept.data.title}
+        src={concept.data.img}
+        lang={concept.data.termLang}
+        href={`/concepts/${concept.slug}`}
+        date={concept.date}
+        client:load
+      />
+    ))
+  }
+</div>

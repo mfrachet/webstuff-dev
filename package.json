@@ -1,0 +1,29 @@
+{
+  "name": "webstuff.dev",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "generate:translations": "astro-i18next generate"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^0.18.0",
+    "@astrojs/react": "^2.1.0",
+    "@astrojs/tailwind": "^3.1.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^2.1.2",
+    "astro-i18next": "1.0.0-beta.21",
+    "i18next": "^22.4.11",
+    "i18next-fs-backend": "^2.1.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-icons": "^4.8.0",
+    "tailwindcss": "^3.0.24"
+  }
+}

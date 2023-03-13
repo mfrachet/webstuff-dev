@@ -1,0 +1,19 @@
+---
+import Title from "./Title";
+
+export interface Props {
+  id: string;
+  title: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<div class="py-20 md:py-32 max-w-6xl">
+  <div class="mr-auto place-self-center lg:col-span-7">
+    <Title as="h1" size="6xl" id={id}>{title}</Title>
+    <div class="h-4"></div>
+
+    <slot />
+  </div>
+</div>

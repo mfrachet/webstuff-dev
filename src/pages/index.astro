@@ -1,0 +1,66 @@
+---
+import { t } from "i18next";
+import { Trans } from "astro-i18next/components";
+import Catchphrase from "../components/Catchphrase.astro";
+import Container from "../components/Container.astro";
+import Hero from "../components/Hero.astro";
+import Title from "../components/Title";
+import TitleLine from "../components/TitleLine.astro";
+import Layout from "../layouts/Layout.astro";
+import ConceptShortList from "../modules/concepts/components/ConceptShortList.astro";
+import BreadCrumbs from "../components/BreadCrumbs";
+
+const mainId = "home-root";
+const conceptSectionId = "concept-section";
+const title = t("meta:title");
+---
+
+<Layout title={title}>
+  <main aria-labelledby={mainId}>
+    <div class="hero-background">
+      <Container>
+        <BreadCrumbs crumbs={[{ label: t("meta:home"), href: "/" }]} />
+
+        <Hero id={mainId} title={title}>
+          <Catchphrase>
+            <Trans i18nKey="meta:catchphrase">
+              <strong class="font-semibold text-slate-900">
+                Un endroit tranquille
+              </strong>{" "}
+              pour appréhender des concepts relatifs au dev Web.
+            </Trans>
+          </Catchphrase>
+        </Hero>
+      </Container>
+    </div>
+
+    <Container>
+      <div class="flex flex-col gap-12">
+        <section aria-labelledby={conceptSectionId}>
+          <div class="h-12"></div>
+
+          <div class="flex flex-row gap-4 items-center">
+            <Title id={conceptSectionId} size="5xl" as="h2">
+              Les derniers concepts
+            </Title>
+
+            <a
+              href="/concepts"
+              class="px-3 py-1 inline-flex items-center gap-2 bg-slate-50 text-sm rounded-full hover:bg-slate-100 active:bg-slate-200"
+              >Voir tous</a
+            >
+          </div>
+
+          <div class="h-2"></div>
+          <TitleLine size="M" />
+
+          <div class="h-8"></div>
+
+          <ConceptShortList />
+        </section>
+      </div>
+    </Container>
+  </main>
+
+  <div class="h-12"></div>
+</Layout>

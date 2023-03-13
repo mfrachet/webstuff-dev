@@ -1,0 +1,46 @@
+---
+import { Trans } from "astro-i18next/components";
+import { t } from "i18next";
+import BreadCrumbs from "../../components/BreadCrumbs";
+import Catchphrase from "../../components/Catchphrase.astro";
+import Container from "../../components/Container.astro";
+import Hero from "../../components/Hero.astro";
+import Search from "../../components/Search";
+import Layout from "../../layouts/Layout.astro";
+import ConceptList from "../../modules/concepts/components/ConceptList.astro";
+
+const mainId = "home-root";
+const title = t("concepts:title");
+---
+
+<Layout title={title}>
+  <main aria-labelledby={mainId}>
+    <div class="hero-background">
+      <Container>
+        <BreadCrumbs
+          crumbs={[
+            { label: t("meta:home"), href: "/" },
+            { label: t("meta:concepts"), href: "/concepts" },
+          ]}
+        />
+        <Hero id={mainId} title={title}>
+          <Catchphrase>
+            <Trans i18nKey="concepts:catchphrase">
+              N'hesitez pas a demander des explications sur un sujet en
+              particulier s'il n'est pas dans la liste ci-dessous
+            </Trans>
+          </Catchphrase>
+        </Hero>
+      </Container>
+    </div>
+
+    <Container>
+      <div class="pt-12 pb-8">
+        <Search />
+      </div>
+      <ConceptList />
+    </Container>
+
+    <div class="h-12"></div>
+  </main>
+</Layout>
