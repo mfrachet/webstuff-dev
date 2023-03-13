@@ -1,5 +1,4 @@
 ---
-import { Trans } from "astro-i18next/components";
 import { t } from "i18next";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import Catchphrase from "../../components/Catchphrase.astro";
@@ -25,10 +24,7 @@ const title = t("concepts:title");
         />
         <Hero id={mainId} title={title}>
           <Catchphrase>
-            <Trans i18nKey="concepts:catchphrase">
-              N'hesitez pas a demander des explications sur un sujet en
-              particulier s'il n'est pas dans la liste ci-dessous
-            </Trans>
+            {t("concepts:catchphrase")}
           </Catchphrase>
         </Hero>
       </Container>

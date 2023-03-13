@@ -7,51 +7,51 @@ date: 2023-03-10
 
 import { AppStartTimeline } from "../../modules/concepts/ssr/AppStartTimeline";
 
-> Pour comprendre ce qu'est l'hydratation, il est preferable d'avoir au prealable compris le [Server Side Rendering](/concepts/ssr)
+> Pour comprendre ce qu'est l'hydratation, il est preferable d'avoir au préalable comprit le [Server Side Rendering](/concepts/ssr)
 
 Reprenons la timeline du concept Server Side Rendering.
 
 <AppStartTimeline client:only />
 
-Sur cette timeline, l'avant derniere frame indiquant le demarrage de l'app est celle qui nous interesse.
+Sur cette timeline, l'avant-dernier frame indiquant le démarrage de l'app est celle qui nous intéresse.
 
-Rappelons nous qu'avant cette frame, le serveur a genere du HTML qui a ete affiche par le navigateur. Cependant, la page n'est pas interactive : si vous cliquiez sur un bouton pour afficher une modale, rien ne se passerait.
+Rappelons-nous qu'avant cette frame, le serveur a généré du HTML qui a été affiche par le navigateur. Cependant, la page n'est pas interactive : si vous cliquiez sur un bouton pour afficher une modale, rien ne se passerait.
 
 Pour la rendre interactive, quelque chose doit se passer au sein du navigateur.
 
 ---
 
-Pour comprendre le processus dans sa globalite, repartons du serveur. Dans les frameworks actuels, le serveur utilise pour generer le HTML est **un serveur Node.js**.
+Pour comprendre le processus dans sa globalité, repartons du serveur. Dans les frameworks actuels, le serveur utilise pour générer le HTML est **un serveur Node.js**.
 
-_Pourquoi un serveur Node.js specifiquement ?_
+_Pourquoi un serveur Node.js spécifiquement ?_
 
-Parce qu'un serveur Node.js peut executer du code JavaScript, tout comme un navigateur. Et c'est un tres tres gros avantages : les frameworks peuvent cacher de la complexite et des optimisations en executant du code qui a ete ecris dans le meme language, mais execute sur deux plateformes differentes (navigateur et serveur).
+Parce qu'un serveur Node.js peut exécuter du code JavaScript, tout comme un navigateur. Et c'est un très gros avantage : les frameworks peuvent cacher de la complexité et des optimisations en exécutant du code qui a été écrit dans le même language, mais exécute sur deux plateformes différentes (navigateur et serveur).
 
-Et pour ne citer que lui, React va exploiter cette force pour "rendre" une application de maniere optimale dependant de la platforme sur laquelle il execute.
+Et pour ne citer que lui, React va exploiter cette force pour “rendre” une application de manière optimale dependant de la plateforme sur laquelle il exécute.
 
 ## Le rendu d'une app React (entre autres)
 
-### Rendu initial cote serveur
+### Rendu initial côté serveur
 
-Sur le serveur Node.js, React va rendre l'application a l'aide de la fonction `renderToString` (ou [fonctions "similaires"](https://beta.reactjs.org/reference/react-dom/server)) qui aura pour but de generer du HTML que le navigateur sera en mesure d'interpreter.
+Sur le serveur Node.js, React va rendre l'application à l'aide de la fonction `renderToString` (ou [fonctions "similaires"](https://beta.reactjs.org/reference/react-dom/server)) qui aura pour but de générer du HTML que le navigateur sera en mesure d'interpréter..
 
-**Ces fonctions ne rendent pas la page web interactive, elles permettent uniquement de creer du HTML, et ainsi participent a optimiser le temps de chargement de la premiere page seulement (le navigateur n'a plus qu'a afficher la page quand elle recoit ce HTML).**
+**Ces fonctions ne rendent pas la page web interactive, elles permettent uniquement de créer du HTML, et ainsi participent à optimiser le temps de chargement de la première page seulement (le navigateur n'a plus qu'à afficher la page quand elle reçoit ce HTML).**
 
 ### Rendu dans le navigateur
 
-Une fois la page affichee (mais non-interactive) dans le navigateur, React va rendre (ou plutot "hydrater" dans ce cas precis) l'application a l'aide de la fonction [`hydrateRoot`](https://beta.reactjs.org/reference/react-dom/client/hydrateRoot).
+Une fois la page affichée (mais non-interactive) dans le navigateur, React va rendre (ou plutôt “hydrater” dans ce cas précis) l'application a l'aide de la fonction [`hydrateRoot`](https://beta.reactjs.org/reference/react-dom/client/hydrateRoot).
 
-Durant ce processus d'hydratation, React va comparer le HTML qu'il avait au prealable genere sur le serveur avec ce qu'il est en train de generer dans le navigateur pour s'assurer que le contenu (et l'arbre des composants) sont les memes. On appelle cette etape la **reconciliation**. Il va, au passage, attacher les evenements tels que `click`, `focus`, `keyup` etc.. sur les elements du DOM concernes.
+Durant ce processus d'hydratation, React va comparer le HTML qu'il avait au préalable généré sur le serveur avec ce qu'il est en train de générer dans le navigateur pour s'assurer que le contenu (et l'arbre des composants) sont les mêmes. On appelle cette étape **la réconciliation**. Il va, au passage, attacher les événements tels que `click`, `focus`, `keyup` etc. sur les éléments du DOM concernés.
 
-Une fois cette etape terminee, l'application est "responsive" et la page web est interactive.
+Une fois cette étape terminée, l'application est “responsive” et la page web est interactive.
 
 ### En cas d'erreur
 
-Lorsque le contenu de la page HTML recu par le serveur est different de ce que React est en train d'essayer de creer dans le navigateur, une erreur peut etre levee indiquant un `mismatch` entre les plateformes.
+Lorsque le contenu de la page HTML reçu par le serveur est différent de ce que React est en train d'essayer de créer dans le navigateur, une erreur peut être levée indiquant un `mismatch` entre les plateformes.
 
-Bien que cette erreur puisse etre un chouille effrayante, elles sont souvent assez simple (pas toujours mais souvent) a gerer.
+Bien que cette erreur puisse être une chouille effrayante, elles sont souvent assez simples (pas toujours mais souvent) à éviter.
 
-Par exemple, si on utilise la fonction `Math.random` dans un composant, il se peut que la valeur retournee soit `0.42` dans le serveur, mais elle sera tres sans doute differente dans le navigateur, par exemple `0.78`:
+Par exemple, si on utilise la fonction `Math.random` dans un composant, il se peut que la valeur retournée soit `0.42` dans le serveur, mais elle sera très sans doute différente dans le navigateur, par exemple `0.78`:
 
 ```jsx
 const MyComponent = () => {
@@ -59,9 +59,9 @@ const MyComponent = () => {
 };
 ```
 
-Dans ce cas precis, quelle valeur est la bonne ? Celle du serveur ou celle du client ?
+Dans ce cas précis, quelle valeur est la bonne : celle du serveur ou celle du client ?
 
-React n'est pas en mesure de le determiner et ce sera donc a la charge du developpeur de s'ajuster. Si votre source de verite, c'est le serveur, il est preferable de deplacement l'appelle a `Math.random` dans les fonctions serveurs :
+React n'est pas en mesure de le déterminer et ce sera donc à la charge du développeur de s'ajuster. Si votre source de vérité, c'est le serveur, il est préférable de déplacer l'appelle `Math.random` dans les fonctions serveurs :
 
 ```jsx
 // Exemple en utilisant Nextjs
@@ -74,7 +74,7 @@ export const getServerSideProps = () => {
 };
 ```
 
-Si vous avez besoin de cette fonction pour un application exclusivement cote client, dans le navigatauer, vous pouvez utiliser les hooks de React :
+Si vous avez besoin de cette fonction pour une application exclusivement côté client, dans le navigateur, vous pouvez utiliser les hooks de React :
 
 ```jsx
 const MyComponent = () => {

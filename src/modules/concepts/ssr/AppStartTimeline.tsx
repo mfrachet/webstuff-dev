@@ -89,7 +89,7 @@ const NinethFrame = () => {
 export const AppStartTimeline = () => {
   return (
     <Timeline
-      title="Timeline d'une requête HTTP avec du SSR et interactivite dans le navigateur"
+      title="Timeline d'une requête HTTP avec du SSR et interactivité dans le navigateur"
       steps={[
         { node: <FirstFrame />, legend: <Legend>Etat initial</Legend> },
         {

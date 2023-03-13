@@ -1,6 +1,5 @@
 ---
 import { t } from "i18next";
-import { Trans } from "astro-i18next/components";
 import Catchphrase from "../components/Catchphrase.astro";
 import Container from "../components/Container.astro";
 import Hero from "../components/Hero.astro";
@@ -23,12 +22,7 @@ const title = t("meta:title");
 
         <Hero id={mainId} title={title}>
           <Catchphrase>
-            <Trans i18nKey="meta:catchphrase">
-              <strong class="font-semibold text-slate-900">
-                Un endroit tranquille
-              </strong>{" "}
-              pour appréhender des concepts relatifs au dev Web.
-            </Trans>
+            {t("meta:catchphrase")}
           </Catchphrase>
         </Hero>
       </Container>
