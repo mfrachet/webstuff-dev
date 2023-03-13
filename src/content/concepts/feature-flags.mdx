@@ -9,21 +9,20 @@ Les features flags sont un moyen pratique d'activer ou de desactiver des fonctio
 
 ---
 
-Ces solutions resolvent des problemes lies au workflow de mise en production de nouvelle fonctionnalites .
+Au depart, ces solutions resolvaient des problemes lies au workflow de mise en production de nouvelle fonctionnalites.
 
-Par exemple (c'est UN exemple parmis tant d'autres), certaines equipes adoptent un flow ou elles vont creer des branches `git` et faire leurs fonctionnalites dessus (qu'on pourrait appeller `feature branch`). Elles vont ensuite merger sur la branche principale uniquement lorsque le developpement de la fonctionnalite est terminee, et validee par les QAs. Cette branche peut donc exister et vivre en parallel de `main` (ou `master`) pendant quelques temps, peut etre meme pendant quelques mois.
+En effet, au lieu d'utiliser des flows de travail et de deploiement tel que Gitflow, qui impliquerait d'implementer des fonctionalites dans des branches a part (_feature branches_) et de les deployer une fois qu'elles sont mergees sur la branche principale,
+les feature flags sont un moyen d'activer ou de desactiver ces fonctionalites au moment du build ou meme pendant l'execution de l'application.
 
-Cette approche necessite d'etre relativement vigilent a la gestion des conflits lors du merge, ou a defaut d'etre operational et de remonter sa feature branch au meme niveau que la branche principale le plus frequement possible.
+Ils ont l'enorme avantage de ne pas requerir de modification de code pour faire varier l'affichage de fonctionalites a l'utilisateur. C'est super pratique pour releaser une nouvelle version a une date precise, ou meme encore de desactiver une fonctionalites qui fait bugger l'appli.
 
-Par ailleurs, tester ces nouvelles fonctionnalites dans un contexte "reel" qui donnerait de la confiance avant de mettre en production (sur des environnements qu iseraient iso-production) peut etre complique a mettre en place.
+Avec les feature flags, les applications qui sont en production embarque deja du code des releases suivantes, mais ce code ne s'execute pas : il est cache et attendra l'heure de l'activation du feature flag pour s'executer !
 
-Mais qu'est ce qui se passe si on doit faire marche arriere parce que la fonctionnalites, maintenant en production, ne repond pas aux attentes de l'equipe, ou pire, introduit des bugs critiques ?
+## Comment ca marche concretement ?
 
-## Moyens de faire (comment)
+### Les variables d'environnements (au moment de builder)
 
-### Au build : les variables d'environnements
-
-Il est possible d'utiliser les variables d'environnements pour jouer le role de feature flags et ainsi pouvoir activer ou desactiver des fonctionnalites **au moment du build** : vous devez re-builder votre application (et donc re-deployer) si vous souhaitez les utilisateurs avec des valeurs differentes.
+Il est possible d'utiliser les variables d'environnements pour jouer le role de feature flags et ainsi pouvoir activer ou desactiver des fonctionnalites **au moment du build** : vous devez re-builder votre application (et donc re-deployer) si vous souhaitez montrer vos fonctionalites a vos utilisateurs.
 
 Un exemple en pseudo-code (il faudrait l'adapter selon le framework utilise) :
 
@@ -35,6 +34,6 @@ if (process.env.SHOW_NEW_FANCY_FEATURE === "true") {
 return <OldFeature />;
 ```
 
-### Au runtime : outils specifiques
+### Des outils specifiques (a chaud, au runtime)
 
-Le meilleur moyen d'utiliser les feature flags selon moi, c'est au runtime : vous avez la capacite de les activer ou de les desactiver **a chaud** au travers d'un tableau de bord. Generalement, ce sont des outils supplementaire a connecter a votre project, tel que [Progressively](https://progressively.app).
+Le meilleur moyen d'utiliser les feature flags selon moi, c'est au runtime. Grace a des outils comme [Progressively](https://progressively.app), vous pouvez, simplement et en un click, activer en temps reel une fonctonalites a vos utilisateurs.
