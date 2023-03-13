@@ -48,7 +48,7 @@ export default function Browser({
               <div className={`h-2 w-3 ${navLinkClass}`} />
             </div>
 
-            <div className="mx-auto w-60 pt-4 px-8">
+            <div className="mx-auto md:w-60 pt-4 px-2 md:px-8">
               <div className={heroClass} />
               <div className={`h-4 w-12 ${contentClass}`} />
               <div className={`h-2 w-full ${contentClass}`} />
