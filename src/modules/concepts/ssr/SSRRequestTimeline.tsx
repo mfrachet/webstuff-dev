@@ -53,14 +53,14 @@ const FifthFrame = () => {
 export const SSRRequestTimeline = () => {
   return (
     <Timeline
-      title="Timeline d'une requete HTTP avec du SSR"
+      title="Timeline d'une requête HTTP avec du SSR"
       steps={[
         { node: <FirstFrame />, legend: <Legend>Etat initial</Legend> },
         {
           node: <SecondFrame />,
           legend: (
             <Legend>
-              Une requete est emise par le navigateur afin d'afficher une page
+              Une requête est émise par le navigateur afin d'afficher une page
               web.
             </Legend>
           ),
@@ -69,7 +69,7 @@ export const SSRRequestTimeline = () => {
           node: <ThirdFrame />,
           legend: (
             <Legend>
-              Le serveur recoit la requete et genere le HTML necessaire pour
+              Le serveur reçoit la requête et génère le HTML nécessaire pour
               afficher la page.
             </Legend>
           ),

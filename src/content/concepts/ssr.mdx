@@ -8,38 +8,38 @@ date: 2023-03-10
 import { SSRRequestTimeline } from "../../modules/concepts/ssr/SSRRequestTimeline";
 import { AppStartTimeline } from "../../modules/concepts/ssr/AppStartTimeline";
 
-C'est un terme qu'on entend beaucoup dans la communaute JavaScript - tous les frameworks recents font leurs pubs et le mettent en avant.
+C'est un terme qu'on entend beaucoup dans la communauté JavaScript - tous les frameworks récents font leurs pubs et le mettent en avant.
 
-Et bien que, comme beaucoup de techno, ca puisse faire peur, ca reste un concept relativement abordable si on prend le temps de decortiquer le truc. On va voir ca ensemble.
+Et bien que, comme beaucoup de techno, ça puisse faire peur, ça reste un concept relativement abordable si on prend le temps de décortiquer le truc. On va voir ça ensemble.
 
 ## C'est quoi ?
 
-Le Server Side Rendering (connu sous l'acronyme SSR) fait exactement ce qu'il suggere : il "rend" (ou fabrique) du HTML sur un serveur et envoie ce HTML au navigateur.
+Le Server Side Rendering (connu sous l'acronyme SSR) fait exactement ce qu'il suggère : il "rend" (ou fabrique) du HTML sur un serveur et envoie ce HTML au navigateur.
 
-**Pour faire du SSR, il est necessaire d'avoir un serveur qui tourne quelque part, sans arret**:
+**Pour faire du SSR, il est nécessaire d'avoir un serveur qui tourne quelque part, sans arrêt**:
 
 <SSRRequestTimeline client:only />
 
-Le serveur va litteralement, et a chaque fois, effecter des traitements de calcul pour generer du HTML qui sera ensuite affiche dans le navigateur.
+Le serveur va littéralement, et a chaque fois, effectuer des traitements de calcul pour générer du HTML qui sera ensuite affiche dans le navigateur.
 
 ## Et c'est tout ?
 
-Techniquement, et si on reste stricte dans les termes, oui, c'est tout. C'est une technique qui existe en fait depuis des annees : PHP, JAVA et C# fonctionnent de cette maniere pour generer des pages web depuis plusieurs decennies maintenant.
+Techniquement, et si on reste stricte dans les termes, oui, c'est tout. C'est une technique qui existe en fait depuis des années : PHP, JAVA et C# fonctionnent de cette manière pour générer des pages web depuis plusieurs décennies maintenant.
 
-Avec l'experience, on a compris que le SSR au sens strict, etait vraiment super puissant pour ameliorer l'experience de chargement de la premiere page : on parle d'optimiser **the initial page load**.
+Avec l'expérience, on a compris que le SSR au sens strict, était vraiment super puissant pour améliorer l'expérience de chargement de la première page : on parle d'optimiser the **initial page load.**
 
 ## C'est tout, mais y'a mieux
 
-Cependant, les frameworks JavaScript actuels sont alles plus loin : ils utilisent le SSR pour optimiser l'affichage de la premiere page mais redonnent la main au navigateur pour rendre les pages Web interactives afin de fournir une experience optimale.
+Cependant, les frameworks JavaScript actuels sont allés plus loin : ils utilisent le SSR pour optimiser l'affichage de la première page mais redonnent la main au navigateur pour rendre les pages Web interactives afin de fournir une expérience optimale.
 
 <AppStartTimeline client:only />
 
-Sur cette timeline, de nouvelles frames ont ete ajoute:
+Sur cette timeline, de nouvelles frames ont ete ajoutées:
 
-- le telechargement des scripts JavaScript present dans le HTML generes par le serveur
-- l'execution de ses scripts
-- le demarrage de l'app JavaScript
+- le téléchargement des scripts JavaScript présent dans le HTML généré par le serveur
+- l'exécution de ces scripts
+- le démarrage de l'app JavaScript
 
-Les deux premieres sont effectuees par le navigateur en lui meme, il effectue son travail en interpretant le code HTML et en respectant les balises qu'il rencontre : s'il tombe sur un `<script src>`, il va telecharger le fichier associe, et l'executer.
+Les deux premières sont effectuées par le navigateur lui-même, il effectue son travail en interprétant le code HTML et en respectant les balises qu'il rencontre : s'il tombe sur un `<script src>`, il va télécharger le fichier associé, et l'exécuter.
 
-La troisieme frame est la plus interessante : pour rendre la page web interactive dans le navigateur, le framework en question doit "demarrer". Tous les frameworks ne demarrent pas de la meme maniere : certains passent par une phase appellee [hydration](/concepts/hydration).
+Le troisième frame est la plus intéressante : pour rendre la page web interactive dans le navigateur, le framework en question doit “démarrer”. Tous les frameworks ne démarrent pas de la même manière : certains passent par une phase appelée [hydration](/concepts/hydration).

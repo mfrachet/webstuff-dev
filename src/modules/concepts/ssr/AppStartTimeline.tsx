@@ -89,14 +89,14 @@ const NinethFrame = () => {
 export const AppStartTimeline = () => {
   return (
     <Timeline
-      title="Timeline d'une requete HTTP avec du SSR et interactivite dans le navigateur"
+      title="Timeline d'une requête HTTP avec du SSR et interactivite dans le navigateur"
       steps={[
         { node: <FirstFrame />, legend: <Legend>Etat initial</Legend> },
         {
           node: <SecondFrame />,
           legend: (
             <Legend>
-              Une requete est emise par le navigateur afin d'afficher une page
+              Une requête est émise par le navigateur afin d'afficher une page
               web.
             </Legend>
           ),
@@ -105,7 +105,7 @@ export const AppStartTimeline = () => {
           node: <ThirdFrame />,
           legend: (
             <Legend>
-              Le serveur recoit la requete et genere le HTML necessaire pour
+              Le serveur reçoit la requête et génère le HTML nécessaire pour
               afficher la page.
             </Legend>
           ),
@@ -126,7 +126,7 @@ export const AppStartTimeline = () => {
           node: <SixthFrame />,
           legend: (
             <Legend>
-              Le navigateur charge les <code>script</code> present dans le code
+              Le navigateur charge les <code>script</code> présents dans le code
               en tache de fond.
             </Legend>
           ),
@@ -135,7 +135,7 @@ export const AppStartTimeline = () => {
           node: <SeventhFrame />,
           legend: (
             <Legend>
-              Le navigateur execute ensuite ces scripts en tache de fond.
+              Le navigateur exécute ensuite ces scripts en tache de fond.
             </Legend>
           ),
         },
@@ -143,7 +143,7 @@ export const AppStartTimeline = () => {
           node: <EighthFrame />,
           legend: (
             <Legend>
-              Lors de l'execution des scripts, l'application est demarree.
+              Lors de l'exécution des scripts, l'application est démarrée.
             </Legend>
           ),
         },
@@ -151,7 +151,7 @@ export const AppStartTimeline = () => {
           node: <NinethFrame />,
           legend: (
             <Legend>
-              Une fois l'application demarree, la page est interactive.
+              Une fois l'application démarrée, la page est interactive.
             </Legend>
           ),
         },
