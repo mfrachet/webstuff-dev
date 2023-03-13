@@ -1,6 +1,5 @@
 ---
 import { getEntryBySlug } from "astro:content";
-import { t } from "i18next";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import Container from "../../components/Container.astro";
 import Hero from "../../components/Hero.astro";
@@ -28,8 +27,8 @@ const mainId = "home-root";
       <Container>
         <BreadCrumbs
           crumbs={[
-            { label: t("meta:home"), href: "/" },
-            { label: t("meta:concepts"), href: "/concepts" },
+            { label: "Accueil", href: "/" },
+            { label: "Concepts", href: "/concepts" },
             { label: entry.data.title, href: `/concepts/${entry.slug}` },
           ]}
         />

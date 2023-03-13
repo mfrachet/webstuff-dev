@@ -1,6 +1,4 @@
 ---
-import { HeadHrefLangs } from "astro-i18next/components";
-import i18next from "i18next";
 export interface Props {
   title: string;
 }
@@ -9,7 +7,7 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang={i18next.language}>
+<html lang={"fr"}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -17,7 +15,6 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <title>{title}</title>
-    <HeadHrefLangs />
   </head>
   <body class="bg-white text-slate-700 mb-16">
     <slot />

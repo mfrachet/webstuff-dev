@@ -1,5 +1,4 @@
 ---
-import { t } from "i18next";
 import BreadCrumbs from "../../components/BreadCrumbs";
 import Catchphrase from "../../components/Catchphrase.astro";
 import Container from "../../components/Container.astro";
@@ -9,7 +8,7 @@ import Layout from "../../layouts/Layout.astro";
 import ConceptList from "../../modules/concepts/components/ConceptList.astro";
 
 const mainId = "home-root";
-const title = t("concepts:title");
+const title = "Tous les concepts";
 ---
 
 <Layout title={title}>
@@ -18,13 +17,14 @@ const title = t("concepts:title");
       <Container>
         <BreadCrumbs
           crumbs={[
-            { label: t("meta:home"), href: "/" },
-            { label: t("meta:concepts"), href: "/concepts" },
+            { label: "Accueil", href: "/" },
+            { label: "Concepts", href: "/concepts" },
           ]}
         />
         <Hero id={mainId} title={title}>
           <Catchphrase>
-            {t("concepts:catchphrase")}
+            N'hésitez pas à demander des explications sur un sujet en
+            particulier s'il n'est pas dans la liste ci-dessous.
           </Catchphrase>
         </Hero>
       </Container>

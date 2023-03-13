@@ -1,4 +1,3 @@
-import { t } from "i18next";
 import { IconSearch } from "./icons/IconSearch";
 
 export default function Search() {
@@ -11,7 +10,7 @@ export default function Search() {
     >
       <div className="w-full md:w-auto">
         <label htmlFor="searchbar" className="font-semibold block pb-1">
-          {t("concepts:search")}
+          Rechercher un concept
         </label>
 
         <input
@@ -26,7 +25,7 @@ export default function Search() {
       <button
         type="submit"
         className="h-8 w-8 bg-white text-slate-900 rounded hover:bg-slate-50 active:bg-slate-100 relative z-10 -ml-9 mb-1 flex items-center justify-center"
-        aria-label={t("conceps:search")}
+        aria-label={"Rechercher un concept"}
       >
         <IconSearch />
       </button>

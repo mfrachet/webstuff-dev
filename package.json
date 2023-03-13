@@ -7,8 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "generate:translations": "astro-i18next generate"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^0.18.1",
@@ -19,9 +18,6 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "astro": "^2.1.3",
-    "astro-i18next": "1.0.0-beta.21",
-    "i18next": "^22.4.11",
-    "i18next-fs-backend": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tailwindcss": "^3.2.7"
