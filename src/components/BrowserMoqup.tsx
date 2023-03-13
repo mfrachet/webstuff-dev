@@ -1,7 +1,7 @@
 import { IconLoader } from "./icons/IconLoader";
 
 export interface BrowserMoqupProps {
-  isFullPageLoading: boolean;
+  isFullPageLoading?: boolean;
   children: React.ReactNode;
 }
 

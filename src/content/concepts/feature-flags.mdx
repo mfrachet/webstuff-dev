@@ -9,6 +9,8 @@ Les features flags sont un moyen pratique d'activer ou de desactiver des fonctio
 
 ---
 
+import { FeatureFlagExample } from "../../modules/concepts/feature-flags/FeatureFlagExample";
+
 Au depart, ces solutions resolvaient des problemes lies au workflow de mise en production de nouvelle fonctionnalites.
 
 En effet, au lieu d'utiliser des flows de travail et de deploiement tel que Gitflow, qui impliquerait d'implementer des fonctionalites dans des branches a part (_feature branches_) et de les deployer une fois qu'elles sont mergees sur la branche principale,
@@ -37,3 +39,5 @@ return <OldFeature />;
 ### Des outils specifiques (a chaud, au runtime)
 
 Le meilleur moyen d'utiliser les feature flags selon moi, c'est au runtime. Grace a des outils comme [Progressively](https://progressively.app), vous pouvez, simplement et en un click, activer en temps reel une fonctonalites a vos utilisateurs.
+
+<FeatureFlagExample client:only />
