@@ -20,7 +20,7 @@ Ils ont l'enorme avantage de ne pas requerir de modification de code pour faire 
 
 Avec les feature flags, les applications qui sont en production embarque deja du code des releases suivantes, mais ce code ne s'execute pas : il est cache et attendra l'heure de l'activation du feature flag pour s'executer !
 
-## Comment ca marche concretement ?
+## Comment ca fonctionne ?
 
 ### Les variables d'environnements (au moment de builder)
 
@@ -38,6 +38,22 @@ return <OldFeature />;
 
 ### Des outils specifiques (a chaud, au runtime)
 
-Le meilleur moyen d'utiliser les feature flags selon moi, c'est au runtime. Grace a des outils comme [Progressively](https://progressively.app), vous pouvez, simplement et en un click, activer en temps reel une fonctonalites a vos utilisateurs.
+Le meilleur moyen d'utiliser les feature flags selon moi, c'est au runtime. Grace a des outils comme [Progressively](https://progressively.app), il est possible, simplement et en un click, d'activer en temps reel une fonctonalites a vos utilisateurs.
 
 <FeatureFlagExample client:only />
+
+Et dans le code, selon la solution choisie, ca ressemblerait a ca :
+
+```jsx
+import { useFlags } from "@progressively/react";
+
+const Hero = () => {
+  const { flags } = useFlags();
+
+  if (flags.newHero) {
+    return <NewHero />;
+  }
+
+  return <OldHero />;
+};
+```
