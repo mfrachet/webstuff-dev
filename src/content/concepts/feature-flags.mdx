@@ -5,26 +5,25 @@ excerpt: "C'est un moyen de charger une page rapidement"
 date: 2023-03-09
 ---
 
-Les features flags sont un moyen pratique d'activer ou de desactiver des fonctionalites au sein d'une application.
+Les features flag sont un moyen pratique d'activer ou de désactiver des fonctionnalités au sein d'une application.
 
 ---
 
 import { FeatureFlagExample } from "../../modules/concepts/feature-flags/FeatureFlagExample";
 
-Au depart, ces solutions resolvaient des problemes lies au workflow de mise en production de nouvelle fonctionnalites.
+Au départ, ces solutions résolvaient des problèmes liés au workflow de mise en production de nouvelles fonctionnalités.
 
-En effet, au lieu d'utiliser des flows de travail et de deploiement tel que Gitflow, qui impliquerait d'implementer des fonctionalites dans des branches a part (_feature branches_) et de les deployer une fois qu'elles sont mergees sur la branche principale,
-les feature flags sont un moyen d'activer ou de desactiver ces fonctionalites au moment du build ou meme pendant l'execution de l'application.
+En effet, au lieu d'utiliser des flows de travail et de déploiement tel que Gitflow, qui impliquerait d'implementer des fonctionnalités dans des branches à part (feature branches) et de les déployer une fois qu'elles sont mergées sur la branche principale, les feature flags est un moyen d'activer ou de désactiver ces fonctionnalités au moment du build ou même pendant l'exécution de l'application.
 
-Ils ont l'enorme avantage de ne pas requerir de modification de code pour faire varier l'affichage de fonctionalites a l'utilisateur. C'est super pratique pour releaser une nouvelle version a une date precise, ou meme encore de desactiver une fonctionalites qui fait bugger l'appli.
+Ils ont l'énorme avantage de ne pas requérir de modification de code pour faire varier l'affichage de fonctionnalités a l'utilisateur. C'est super pratique pour releaser une nouvelle version à une date précise, ou même encore de désactiver une fonctionnalité qui fait bugger l'appli.
 
-Avec les feature flags, les applications qui sont en production embarque deja du code des releases suivantes, mais ce code ne s'execute pas : il est cache et attendra l'heure de l'activation du feature flag pour s'executer !
+Avec les features flags, les applications qui sont en production embarquent déjà du code des releases suivantes, mais ce code ne s'exécute pas : il est caché et attendra l'heure de l'activation du feature flag pour s'exécuter !
 
-## Comment ca fonctionne ?
+## Comment ça fonctionne ?
 
 ### Les variables d'environnements (au moment de builder)
 
-Il est possible d'utiliser les variables d'environnements pour jouer le role de feature flags et ainsi pouvoir activer ou desactiver des fonctionnalites **au moment du build** : vous devez re-builder votre application (et donc re-deployer) si vous souhaitez montrer vos fonctionalites a vos utilisateurs.
+Il est possible d'utiliser les variables d'environnements pour jouer le rôle de feature flags et ainsi pouvoir activer ou désactiver des fonctionnalités **au moment du build** : vous devez re-builder votre application (et donc redéployer) si vous souhaitez montrer vos fonctionnalités à vos utilisateurs.
 
 Un exemple en pseudo-code (il faudrait l'adapter selon le framework utilise) :
 
@@ -36,13 +35,13 @@ if (process.env.SHOW_NEW_FANCY_FEATURE === "true") {
 return <OldFeature />;
 ```
 
-### Des outils specifiques (a chaud, au runtime)
+### Des outils spécifiques (a chaud, au runtime)
 
-Le meilleur moyen d'utiliser les feature flags selon moi, c'est au runtime. Grace a des outils comme [Progressively](https://progressively.app), il est possible, simplement et en un click, d'activer en temps reel une fonctonalites a vos utilisateurs.
+Le meilleur moyen d'utiliser les features flags selon moi, c'est au runtime. Grâce à des outils comme [Progressively](https://progressively.app/), il est possible, simplement et en un click, d'activer en temps réel une fonctionnalité à vos utilisateurs.
 
 <FeatureFlagExample client:only />
 
-Et dans le code, selon la solution choisie, ca ressemblerait a ca :
+Et dans le code, selon la solution choisie, ça ressemblerait à ça :
 
 ```jsx
 import { useFlags } from "@progressively/react";
