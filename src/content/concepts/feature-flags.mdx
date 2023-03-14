@@ -5,4 +5,54 @@ excerpt: "C'est un moyen de charger une page rapidement"
 date: 2023-03-09
 ---
 
-Hello world
+Les features flag sont un moyen pratique d'activer ou de désactiver des fonctionnalités au sein d'une application.
+
+---
+
+import { FeatureFlagExample } from "../../modules/concepts/feature-flags/FeatureFlagExample";
+
+Au départ, ces solutions résolvaient des problèmes liés au workflow de mise en production de nouvelles fonctionnalités.
+
+En effet, au lieu d'utiliser des flows de travail et de déploiement tel que Gitflow, qui impliquerait d'implementer des fonctionnalités dans des branches à part (feature branches) et de les déployer une fois qu'elles sont mergées sur la branche principale, les feature flags est un moyen d'activer ou de désactiver ces fonctionnalités au moment du build ou même pendant l'exécution de l'application.
+
+Ils ont l'énorme avantage de ne pas requérir de modification de code pour faire varier l'affichage de fonctionnalités a l'utilisateur. C'est super pratique pour releaser une nouvelle version à une date précise, ou même encore de désactiver une fonctionnalité qui fait bugger l'appli.
+
+Avec les features flags, les applications qui sont en production embarquent déjà du code des releases suivantes, mais ce code ne s'exécute pas : il est caché et attendra l'heure de l'activation du feature flag pour s'exécuter !
+
+## Comment ça fonctionne ?
+
+### Les variables d'environnements (au moment de builder)
+
+Il est possible d'utiliser les variables d'environnements pour jouer le rôle de feature flags et ainsi pouvoir activer ou désactiver des fonctionnalités **au moment du build** : vous devez re-builder votre application (et donc redéployer) si vous souhaitez montrer vos fonctionnalités à vos utilisateurs.
+
+Un exemple en pseudo-code (il faudrait l'adapter selon le framework utilise) :
+
+```jsx
+if (process.env.SHOW_NEW_FANCY_FEATURE === "true") {
+  return <MyNewFancyFeature />;
+}
+
+return <OldFeature />;
+```
+
+### Des outils spécifiques (a chaud, au runtime)
+
+Le meilleur moyen d'utiliser les features flags selon moi, c'est au runtime. Grâce à des outils comme [Progressively](https://progressively.app/), il est possible, simplement et en un click, d'activer en temps réel une fonctionnalité à vos utilisateurs.
+
+<FeatureFlagExample client:only />
+
+Et dans le code, selon la solution choisie, ça ressemblerait à ça :
+
+```jsx
+import { useFlags } from "@progressively/react";
+
+const Hero = () => {
+  const { flags } = useFlags();
+
+  if (flags.newHero) {
+    return <NewHero />;
+  }
+
+  return <OldHero />;
+};
+```

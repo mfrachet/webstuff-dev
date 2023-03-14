@@ -1,6 +1,7 @@
 import Browser from "../../../components/Browser";
+import { Canvas } from "../../../components/Canvas";
 import NodeServer from "../../../components/NodejsServer";
-import { Canvas, Request, Response } from "../../../components/TechStack";
+import { Request, Response } from "../../../components/TechStack";
 import Timeline, { Legend } from "../../../components/Timeline";
 
 const FirstFrame = () => {
