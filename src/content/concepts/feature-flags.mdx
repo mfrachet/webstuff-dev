@@ -56,3 +56,31 @@ const Hero = () => {
   return <OldHero />;
 };
 ```
+
+## Aller plus loin avec les feature flags
+
+Comme vous l'aurez compris, les features flags sont un moyen pratique d'afficher conditionnellement des fonctionnalités. Mais on peut aller encore plus loin.
+
+En effet, dans l'exemple ci-dessus, on a principalement vu qu'un flag pouvait avoir deux valeurs : `true` ou `false`.
+
+Dans la réalité, on peut aller plus loin en imaginant qu’un feature flag puisse avoir plusieurs valeurs, et pas uniquement des valeurs booléennes:
+
+```jsx
+import { useFlags } from "@progressively/react";
+
+const Hero = () => {
+  const { flags } = useFlags();
+
+  if (flags.newHero === "A") {
+    return <HeroA />;
+  }
+
+  if (flags.newHero === "B") {
+    return <HeroB />;
+  }
+
+  return <DefaultHero />;
+};
+```
+
+Avec cette approche, il est possible d'afficher plus que deux variantes aux utilisateurs, et ça peut s'avérer très pratique pour faire des A/B tests, et ainsi analyser quelle variante est la plus appréciée par les utilisateurs.
